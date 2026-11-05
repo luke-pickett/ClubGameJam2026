@@ -24,6 +24,5 @@ public class CharacterInputManager : MonoBehaviour
 
     private void OnMove(InputValue input)
     {
-        movementScript.UpdateMovement(input.Get<Vector2>());
     }
 }

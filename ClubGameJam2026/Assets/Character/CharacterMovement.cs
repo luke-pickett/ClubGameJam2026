@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private float skinWidth = 0.01f;
+    [SerializeField] private float skinWidth = 0.05f;
 
     private Rigidbody2D rb;
 

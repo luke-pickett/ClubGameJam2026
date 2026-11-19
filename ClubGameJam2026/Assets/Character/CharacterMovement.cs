@@ -15,15 +15,22 @@ public class CharacterMovement : MonoBehaviour
 
     void MoveWithCollision(Vector2 newPos) {
         Vector2 slope = newPos - rb.position;
-        if (rb.Cast(slope.normalized, hitResults, slope.magnitude) == 0) {
+        int hits = rb.Cast(slope.normalized, hitResults, slope.magnitude);
+        
+        if (hits == 0)
+        {
             rb.MovePosition(newPos);
+            return;
         }
-        else {
-            RaycastHit2D closest = hitResults[0];
-            float isAllowed = Mathf.Max(closest.distance - skinWidth, 0);
-            Vector2 nonColliding = rb.position + slope.normalized * isAllowed;
-            rb.MovePosition(nonColliding);
+
+        for (int i=0; i<hits; ++i)
+        {
+            slope -= (Vector2) Vector3.Project(slope, hitResults[i].normal);
         }
+        RaycastHit2D closest = hitResults[0];
+        float isAllowed = Mathf.Max(closest.distance - skinWidth, 0);
+        Vector2 nonColliding = rb.position + slope.normalized * isAllowed;
+        rb.MovePosition(nonColliding);
     }
     
 

@@ -25,7 +25,7 @@ public class CharacterMovement : MonoBehaviour
 
         for (int i=0; i<hits; ++i)
         {
-            slope -= (Vector2) Vector3.Project(slope, hitResults[i].normal);
+            slope -= (Vector2) Vector3.Project(slope, hitResults[i].normal*5);
         }
         RaycastHit2D closest = hitResults[0];
         float isAllowed = Mathf.Max(closest.distance - skinWidth, 0);
